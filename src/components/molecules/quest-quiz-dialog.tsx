@@ -1,7 +1,17 @@
 import * as React from "react";
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
-import {Button, DialogActions, DialogContent, DialogContentText} from "@mui/material";
+import {
+  Box,
+  Button,
+  DialogActions,
+  DialogContent,
+  DialogContentText, FormControl, FormLabel, RadioGroup,
+  Stack,
+  Typography
+} from "@mui/material";
+import QuestQuizForm from "./quest-quiz-form";
+import {maxWidth} from "@mui/system";
 
 interface SimpleDialogProps {
   open: boolean;
@@ -18,19 +28,27 @@ const QuestQuizDialog = (props: SimpleDialogProps) => {
 
   return (
       <>
-        <Dialog onClose={handleClose} open={open}>
-          <DialogTitle>Set backup account</DialogTitle>
+        <Dialog
+            fullWidth
+            maxWidth={"sm"}
+          onClose={handleClose} open={open}>
+          <DialogTitle>
+            <Stack direction={"column"} spacing={1}>
+              <Typography variant={"body1"}>
+                Question 1 of 2
+              </Typography>
+              <Typography variant={"h5"}>
+                Swapping is
+              </Typography>
+            </Stack>
+          </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Let Google help apps determine location. This means sending anonymous
-              location data to Google, even when no apps are running.
+              <QuestQuizForm />
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Disagree</Button>
-            <Button onClick={handleClose} autoFocus>
-              Agree
-            </Button>
+            <Button onClick={handleClose}>Next Question</Button>
           </DialogActions>
         </Dialog>
       </>
